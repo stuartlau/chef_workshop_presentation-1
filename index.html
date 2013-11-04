@@ -16,6 +16,8 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+<link rel="stylesheet" href="css/custom.css">
+
 <link rel="stylesheet" href="css/reveal.min.css">
 <!-- <link rel="stylesheet" href="css/theme/default.css" id="theme"> -->
 <link rel="stylesheet" href="css/theme/moon.css" id="theme">
@@ -47,7 +49,7 @@
 					<p>Composed by <a href="http://www.tikalk.com/alm">Haggai
 							Philip Zagury</a> / <a href="http://twitter.com/hagzag">@hagzag</a>
 				</p>
-				<img src="http://www.tikalk.com/sites/all/themes/sasson/tikal/logo.png" style="border 0; background:none; border: none;  width: 149px; height: 48px">
+				<img class="nobg" src="http://www.tikalk.com/sites/all/themes/sasson/tikal/logo.png" style="width: 149px; height: 48px">
 			</section>
 			<section>
 				<h2>Agenda</h2>
@@ -68,7 +70,7 @@
 					doing." - Aristotle, Greek philiosopher</blockquote>
 			</section>
 			<section>
-				<section data-background="#ffffff">
+				<section>
 					<h2>Whoami?</h2>
 					<h3>Haggai Philip Zagury</h3>
 					<p style="text-align: left;"></p>
@@ -90,25 +92,25 @@
 					</ul>
 
 				</section>
-				<section data-background="#ffffff">
+				<section>
 					<h3>Our Expertise</h3>
-					<img src="images/OurExpertise.png" style="border: 0;">
+					<img src="images/OurExpertise.png" style="border: 0; background:none; ">
 				</section>
-				<section data-background="#ffffff">
-					<img src="images/Tikal_Header" style="border: 0;">
+				<section>
+					<img src="images/Tikal_Header" style="border: 0; background:none;">
 					<blockquote>Today we are SURE that we made the right
 						decision, choosing Tikal</blockquote>
 					<p>Guy Ben-Porat, Development Manager “ExLibris”</p>
 				</section>
-				<section data-background="#ffffff">
+				<section>
 					<h2>Tikal By Numbers</h2>
-					<img src="images/Tikal_Numbers.png" style="border: 0;">
+					<img src="images/Tikal_Numbers.png" style="border: 0; background:none;">
 
 				</section>
-				<section data-background="#ffffff">
+				<section>
 					<h2>Actions speak louder than words</h2>
 					<h3>Tikal's Motto</h3>
-					<img src="images/Actions.png" style="border: 0;">
+					<img src="images/Actions.png" style="border: 0; background:none;">
 
 				</section>
 			</section>
@@ -492,7 +494,7 @@ end
 							to</span>
 					</h2>
 					<h2>
-						<img src="images/vagrant_hippie.png" style="border: 0;">
+						<img class="nobg"  src="images/vagrant_hippie.png">
 					</h2>
 					<h2>
 						<span style="font-size: 64.566px;">VAGRANT</span> <br>
@@ -517,24 +519,24 @@ end
 					</div>
 					<div>You will find hypervisors such as:</div>
 					<div>
-						<img src="images/virtualbox.png"
-							style="width: 114.16100169961186px; height: 114.16100169961186px; max-height: none; max-width: none; border: 0;">
-						<img src="images/vmware.png"
-							style="width: 113.07797684503755px; height: 113.07797684503755px; max-height: none; max-width: none; border: 0;">
-						<img src="images/xen_logo.png" style="border: 0;"> <img
-							src="images/qemu.png" style="border: 0;"> <img
-							src="images/kvm-logo.png" style="border: 0;"> <br>
+						<img class="nobg" src="images/virtualbox.png"
+							style="width: 114.16100169961186px; height: 114.16100169961186px;">
+						<img class="nobg" src="images/vmware.png"
+							style="width: 113.07797684503755px; height: 113.07797684503755px;">
+						<img class="nobg" src="images/xen_logo.png" > 
+						<img class="nobg" src="images/qemu.png"> 
+						<img class="nobg" src="images/kvm-logo.png" > <br>
 					</div>
 					<div>And cloud providers based on these solutions such as:</div>
 					<div>
-						<img src="images/Rackspace_Logo.png"
-							style="width: 78.39060604555677px; height: 81.98875643683114px; max-height: none; max-width: none; border: 0;">
-						<img src="images/aws-logo-large.png"
-							style="width: 199.17390168530443px; height: 73.54944456293572px; max-height: none; max-width: none; border: 0;">
-						<img src="images/heroku-logo-light-300x100.png"
-							style="width: 228.5422333711661px; height: 76.21997034703756px; max-height: none; max-width: none; border: 0;">
-						<img src="images/bluelocklogo.png"
-							style="width: 203.2296041706469px; height: 47.33272147475553px; max-height: none; max-width: none; border: 0;">&nbsp;<br>
+						<img class="nobg" src="images/Rackspace_Logo.png"
+							style="width: 78.39060604555677px; height: 81.98875643683114px;">
+						<img class="nobg" src="images/aws-logo-large.png"
+							style="width: 199.17390168530443px; height: 73.54944456293572px;">
+						<img class="nobg"  src="images/heroku-logo-light-300x100.png"
+							style="width: 228.5422333711661px; height: 76.21997034703756px; ">
+						<img class="nobg"  src="images/bluelocklogo.png"
+							style="width: 203.2296041706469px; height: 47.33272147475553px; "><br>
 					</div>
 					<p></p>
 				</section>
@@ -701,8 +703,7 @@ config.vm.box_url = "http://shonky.info/centos64.box"</code>
 					</pre>
 					<div style="text-align: left;">chef-solo example:</div>
 					<pre>
-						<code>					
-   config.vm.provision :chef_solo do |chef|
+						<code>config.vm.provision :chef_solo do |chef|
    chef.cookbooks_path = ["cookbooks", "site-cookbooks"]
    chef.roles_path     = ["roles"]
    chef.log_level      = ENV['CHEF_LOG'] ? ENV['CHEF_LOG'].to_sym : :info
@@ -756,20 +757,16 @@ end</code>
          }
       aws.access_key_id = ENV['AWS_ACCESS_KEY']
       aws.secret_access_key = ENV['AWS_SECRET_KEY']
-      aws.keypair_name = "A_VAGRANT_KEYPAIR"</code>
-                            <code>      aws.security_groups = [ "MySecurotyGroupWithSSHOpen" ]
+      aws.keypair_name = "A_VAGRANT_KEYPAIR"
+      aws.security_groups = [ "MySecurotyGroupWithSSHOpen" ]
       aws.region = "us-west-2"
       aws.ami = "ami-myami"
-  end<br>
-                            </code>                </pre>
+  end</code></pre>
 					In the example above set the AWS_ACCESS_KEY &amp; AWS_SECRET_KEY
 					and execute<br>
 					<pre>
 						<code>vagrant up --provider=aws</code>
 					</pre>
-					<div>
-						<br>
-					</div>
 				</section>
 				<section>
 					<h2>Vagrant can be extended via plugins</h2>
@@ -826,11 +823,8 @@ end</code>
 					<div style="text-align: left;">Setup the cookbook's
 						dependencies</div>
 					<div style="text-align: left;">
-						<pre>
-                                <code>vim web/metadata.rb
-						
-						depends 'nginx'</code>
-						</pre>
+						<pre><code>vim web/metadata.rb</code></pre>
+						<pre><code>depends 'nginx'</code></pre>
 					</div>
 					<div style="text-align: left;">When using chef solo you want
 						to edit your Cheffile accordingly:</div>
@@ -853,10 +847,7 @@ directory node[:nginx][:vhost][:demo] do
   recursive true
 end</code>
 						</pre>
-
-						<pre>
-							<code>#Crete the Vhost definition</code>
-						</pre>
+						<p>Crete the Vhost definition</p>
 						<pre>
 							<code>template "/etc/nginx/sites-available/demo-site" do  # the "default" sites-available dir under nginx's run folder
   source "demo-site.erb"                            # the template file to use
@@ -1233,10 +1224,10 @@ vagrant up</code>
 						<p>Connect back to chef-server and provison nodes</p>
 						<pre>
 							<code># Bootstrap nodes
-centos node :: knife bootstrap 192.168.56.103 -x opencm -P opencm \
-        -r 'role[base]' --sudo
-
-        ubtunu node :: knife bootstrap 192.168.56.104 -x opencm -P opencm \        -r 'role[base]' --sudo
+centos node :: 
+knife bootstrap 192.168.56.103 -x opencm -P opencm -r 'role[base]' --sudo
+ubtunu node :: 
+knife bootstrap 192.168.56.104 -x opencm -P opencm -r 'role[base]' --sudo
 </code>
 						</pre>
 					</div>
