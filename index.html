@@ -19,8 +19,8 @@
 <link rel="stylesheet" href="css/custom.css">
 
 <link rel="stylesheet" href="css/reveal.min.css">
-<!-- <link rel="stylesheet" href="css/theme/default.css" id="theme"> -->
-<link rel="stylesheet" href="css/theme/moon.css" id="theme">
+<!-- <link rel="stylesheet" href="css/theme/moon.css" id="theme"> -->
+<link rel="stylesheet" href="css/theme/tikal.css" id="theme">
 
 <!-- For syntax highlighting -->
 <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -55,7 +55,7 @@
 				<h2>Agenda</h2>
 				<p></p>
 				<ol>
-					<li>Introduction to Opscode Chef</	li>
+					<li>Introduction to Opscode Chef</li>
 					<ul>
 						<li>Write an innocent cookbook</li>
 					</ul>
@@ -120,34 +120,59 @@
 					<a target="_blank"
 						href="http://prezi.com/8zwcr5df9eno/chef-intro-chef-server-workflow/#"><img
 						src="images/Chef_Intro_Prezi.png" style="border: 0;"></a>
-
 					<p>
 						<a
 							href="http://prezi.com/8zwcr5df9eno/chef-intro-chef-server-workflow">http://prezi.com/8zwcr5df9eno/chef-intro-chef-server-workflow</a>
 					</p>
-
+					<p>Lets go through this prezi together</p>
 				</section>
 				<section>
 					<h2>
-						<br>
+						<span style="font-size: 64.566px;">Recap</span><br>
 					</h2>
-					<h2>
-						<br>
-					</h2>
-					<h2>
-						<span style="font-size: 64.566px;">Writing&nbsp;</span> <br>
-					</h2>
-					<h2>your first cookbook</h2>
 					<div>
-						<a href="https://github.com/tikalk-cookbooks/ntp-intro">https://github.com/tikalk-cookbooks/ntp-intro</a>
-						<br>
+						<p>We know what !</p>
+						<ol>
+							<li>Chef is - and what it solves</li>
+							<li>Chef server / solo / knife (WS)</li>
+						</ol>
+						<p>are</p>
+						<p>Let's write a simple cookbook ...</p>
 					</div>
-					<div>stage 1: tag 0.1.0</div>
-					<div>stage 2: tag 0.1.1</div>
-					<br>
-					<p>We will use this cookbook in the server 'route' later on in
-						this workshop</p>
 				</section>
+				</section>
+			<section>
+				<section>
+					<h1>Excercise - Hands On</h1>
+					<h2>Writing your first cookbook</h2>
+					<br>
+					<div>
+						Final cookbook avail @:<br>
+						<a href="http://bit.ly/1egBtKm">https://github.com/tikalk-cookbooks/ntp-intro</a>
+						<br>
+					</div><br>
+					<div>Exercise #1: tag 0.1.0<br>
+					Exercise #2: tag 0.1.1<br>
+					Exercise #3: test ntp cookbook with vagrant</div>
+					
+					
+				</section>
+				<section>
+					<h2>Prequisets</h2>
+					<ol>
+						<li>A Laptop ... :)</li>
+						<li>Some scripting backgroud </br>(Shell/PS - Ruby is a plus)</li>
+						<li>Git</li>
+						<li>Github account [private/public key]</li>
+						<li>VirtualBox</li>
+						<li>Chef (ruby)</li>
+					</ol>
+				</section>
+				<section>
+					<h2>Exercise #1</h2>
+					<p>Write a cookbook</p>
+				</section>
+				
 				<section>
 					<h2>The Plan</h2>
 					<div style="text-align: left;">
@@ -161,6 +186,7 @@
 						</ul>
 					</div>
 				</section>
+				
 				<section>
 					<h2>Install Chef & Ruby</h2>
 					<div style="text-align: left;">
@@ -169,69 +195,49 @@
 								href="http://www.opscode.com/blog/2012/06/29/omnibus-chef-packaging/">Omnibus
 								installer</a> will "figure out" your OS and install it<br> In
 							addition to an embedded version of chef
-						</p>
-						<p>On *nix</p>
-						<pre>
-							<code>curl -L https://www.opscode.com/chef/install.sh | sudo bash</code>
-						</pre>
-						<pre>
-							<code>/opt/opscode/...</code>
-						</pre>
-						<p>On Windows</p>
-						<pre>
-							<code>https://opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chef-client-11.8.0-1.windows.msi</code>
-						</pre>
-						<pre>
-							<code>c:\opscode</code>
-						</pre>
+						</p><br>
+						<p>On *nix / MacOSX</p>
+						<pre><code>curl -L https://www.opscode.com/chef/install.sh | sudo bash
+/opt/opscode/...</code></pre><br>
+						<p>On Windows [<a href="http://bit.ly/1kv4XN8">Download link</a>]</p>
+						<pre><code>https://opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chef-client-11.8.0-1.windows.msi
+c:\opscode</code></pre>
 					</div>
 				</section>
 				<section>
 					<h2>Create a cookbook skeleton</h2>
-					<div style="text-align: left;">User knife ...</div>
+					<div style="text-align: left;">Use knife ...</div>
 					<div>
-						<pre>
-                                <code> knife cookbook create ntp</code>                        </pre>
+						<pre><code>knife cookbook create ntp</code></pre>
 					</div>
 					<div>
-						<p style="text-align: left;">
-							<br>
-						</p>
 						<p style="text-align: left;">We get:</p>
-						<pre>
-                                <code>attributes/
- definitions/
- files/
- libraries/
- metadata.rb
- providers/
- README.rdoc
- recipes/
- resources/
- templates/
-                                </code>
-                            </pre>
-						<p style="text-align: left;">
-							<br>
-						</p>
-						<p style="text-align: left;">
-							<br>
-						</p>
+						<pre><code>attributes/
+definitions/
+files/
+libraries/
+metadata.rb
+providers/
+README.rdoc
+recipes/
+resources/
+templates/</code></pre>
+					</div>
+					<div  style="text-align: left;"><p>Shortcut => Get from git:<p>
+						<pre><code>git clone git@github.com:tikalk-cookbooks/ntp-intro.git
+git checkout -b 0.1.0</code></pre>
 					</div>
 				</section>
 				<section>
-					<h2>Create a recipe</h2>
-					<pre>
-						<code> vim  cookbooks/ntp/recipes/default.rb</code>
-					</pre>
+					<h2>Create a recipe [step 1/3]</h2>
+					<pre><code> vim  cookbooks/ntp/recipes/default.rb</code></pre>
 					<div style="text-align: left;">
 						Use chef's built-in <font color="#ff0000">package</font> provider
 						to install a package
 					</div>
-					<pre>
-                                <code>package "ntp" do
+					<pre><code>package "ntp" do
     action [:install]
-end</code>                </pre>
+end</code></pre>
 
 					<div style="text-align: left;">This will instruct chef to use
 						yum/apt-get etc based on the node's operating system</div>
@@ -240,8 +246,7 @@ end</code>                </pre>
 					</div>
 					<div style="text-align: left;">Manually this would be:</div>
 					<div style="text-align: left;">
-						<pre>
-                                <code> yum install ntp / apt-get install ntp</code>            </pre>
+						<pre><code> yum install ntp</code></pre>
 					</div>
 					<div>
 						[ 1of3 ]&nbsp;<span
@@ -254,29 +259,23 @@ end</code>                </pre>
 					</div>
 				</section>
 				<section>
-					<h2>Create a recipe</h2>
+					<h2>Create a recipe [Step 2/3]</h2>
 					<div style="text-align: left;">Define a template file
 						(/etc/ntp.conf)</div>
 					<div style="text-align: left;">
-						<pre>
-                                <code>template "/etc/ntp.conf" do
+						<pre><code>template "/etc/ntp.conf" do
     source "ntp.conf.erb"
     variables( :ntp_server =&gt; "time.nist.gov" )
     notifies :restart, "service[ntpd]"
-end</code>
-                            </pre>
+end</code></pre>
 					</div>
 					<div style="text-align: left;">Create the template file:</div>
 					<div style="text-align: left;">
-						<pre>
-                                <code>vim cookbooks/ntp/templates/default/ntp.conf.erb
-<code>
+						<pre><code>vim cookbooks/ntp/templates/default/ntp.conf.erb
 template "/etc/ntp.conf" do
 source "ntp.conf.erb"
 variables( :ntp_server =&gt; "time.nist.gov" )
-notifies :restart, "service[ntpd]"</code>
-                                </code>
-                            </pre>
+notifies :restart, "service[ntpd]"</code></pre>
 					</div>
 					<p>Similar to manually editing the /etc/ntp.conf</p>
 
@@ -289,20 +288,16 @@ notifies :restart, "service[ntpd]"</code>
 					</div>
 				</section>
 				<section>
-					<h2>Create a recipe</h2>
+					<h2>Create a recipe [Step 3/3]</h2>
 					<div style="text-align: left;">Define a service&nbsp;</div>
 					<div style="text-align: left;">
-						<pre>
-                                <code>service "ntpd" do
+						<pre><code>service "ntpd" do
     action [:enable,:start]
-end</code>
-                            </pre>
+end</code></pre>
 					</div>
 
 					<div>Like running the command&nbsp;</div>
-					<pre>
-                                    <code>chkconfig ntp on</code>
-                                </pre>
+					<pre><code>chkconfig ntp on</code></pre>
 
 					<div>
 						[3of3] <a
@@ -310,6 +305,9 @@ end</code>
 							github</a>&nbsp;tag 0.1.0
 					</div>
 				</section>
+			</section>
+			
+			<section>
 				<section>
 					<h2>The problem</h2>
 					<div>
@@ -339,19 +337,26 @@ end</code>
 						<div style="text-align: center;">Lets fix this ...</div>
 					</div>
 				</section>
+				</section>
 				<section>
-					<h2>Improve your recipe</h2>
+					<section>
+					<h2>
+						<span style="font-size: 64.566px;">Exercise #2&nbsp;</span><br>
+					</h2>
+					<p>Sharpen your knives => Improve the cookbook</p>
+				</section>
+				<section>
+					<h2>Improooooooove your recipe [Step 1/3]</h2>
 					<div style="text-align: left;">Adding attributes&nbsp;</div>
 					<div style="text-align: left;">
-						<pre>
-                                <code>case platform
+						<pre><code>case platform
 when "redhat","centos","fedora","scientific"
     default[:ntp][:service] = "ntpd"
 when "ubuntu","debian"
     default[:ntp][:service] = "ntp"
 else
     default[:ntp][:service] = "ntpd"
-end</code>            </pre>
+end</code></pre>
 					</div>
 					<code>
 						<code>
@@ -378,21 +383,18 @@ end</code>            </pre>
 
 				</section>
 				<section>
-					<h2>Improve your recipe</h2>
+					<h2>Improooooooove your recipe [Step 2/3]</h2>
+
 					<div style="text-align: left;">Support more than 1 ntp server
 						- add attribute</div>
 					<div style="text-align: left;">
-						<pre>
-                                <code>default[:ntp][:servers] = ["0.pool.ntp.org", "1.pool.ntp.org", "2.pool.ntp.org", "3.pool.ntp.org"]</code>
-                            </pre>
+						<pre><code>default[:ntp][:servers] = ["0.pool.ntp.org", "1.pool.ntp.org", "2.pool.ntp.org", "3.pool.ntp.org"]</code></pre>
 					</div>
-					<code>
-						<code>
+					
 							<div style="text-align: left;">Add that support to the
 								template file</div>
 							<div style="text-align: left;">
-								<pre>
-                                        <code># Generated by Chef for &lt;%= node[:fqdn] %&gt; 
+								<pre><code># Generated by Chef for &lt;%= node[:fqdn] %&gt; 
 # node[:fqdn] = ohai data collected on node !
 # Local modifications will be overwritten.
 
@@ -402,31 +404,19 @@ restrict -6 ::1
 &lt;% node[:ntp][:servers].each do |ntpsrv| -%&gt;
   server &lt;%= ntpsrv %&gt; iburst
   restrict &lt;%= ntpsrv %&gt; nomodify notrap noquery
-&lt;% end -%&gt;</code>
-                                        <code>...<br>
-                                        </code>            </pre>
+&lt;% end -%&gt;</code></pre>
 							</div>
 							<div>
 								[2of3] <a
 									href="https://github.com/tikalk-cookbooks/ntp-intro/releases">on
 									github</a>&nbsp;tag 0.1.1
 							</div>
-
-						</code>
-						<br>
-					</code>
-					<br>
-
-
-
-
 				</section>
 				<section>
-					<h2>Improve your recipe</h2>
+					<h2>Improooooooove your recipe [Step 3/3]</h2>
 					<div style="text-align: left;">Re-arrange recipe</div>
 					<div style="text-align: left;">
-						<pre>
-                                <code>package "ntp" do
+						<pre><code>package "ntp" do
     action [:install]
 end
 
@@ -442,14 +432,14 @@ template "/etc/ntp.conf" do
     mode 0644
     notifies :restart, resources(:service =&gt; node[:ntp][:service])
 end
-</code>                </pre>
+</code></pre>
 					</div>
 					<code>
 						<code>
 							<div>
 								<font style="font-size: 24px;">The service name comes
-									before the template which notifies :service =&gt;
-									node[:ntp][:service]</font>
+									before the template which notifies <br>
+									:service =&gt;node[:ntp][:service]</font>
 							</div>
 							<div>
 								[3of3] <a
@@ -461,11 +451,35 @@ end
 					</code>
 					<br>
 				</section>
-				<section>
+			</section>
+							<section>
+								<section>
 					<h2>
 						<br>
 					</h2>
-					<h2>Please don't use this cookbook</h2>
+					<h2>So we have our first cookbook <br> now what ?</h2>
+					<p>
+						<font style="font-size: 24px;"> <br>
+						</font>
+					</p>
+					<p>
+						We want to test this cookbook & we need a server to test this on right ?<br>
+						A good place to introduce <h3>Vagrant</h3> and create a <h3>VM</h3> to test this cookbook ...
+
+					</p>
+					<div>
+						<br>
+					</div>
+				</section>
+
+				<section>
+
+					<h2>Stage #1 Complete</h2>
+			
+					<h2>
+						<br>
+					</h2>
+					<h2>P.S<br> Please don't use this cookbook in production ;)</h2>
 					<p>
 						<font style="font-size: 24px;"> <br>
 						</font>
@@ -547,10 +561,10 @@ end
 					<blockquote class="absolute-element"
 						style="position: absolute; width: 679px; height: 265px; z-index: 4; left: -2px; top: 116px;">
 						<font style="font-size: 32px;">Vagrant provides<font
-							color="#ffff00"> easy to configure</font>, <font color="#ffff00">reproducible</font>,
-							and <font color="#ffff00">portable</font> work environments built
+							color="#CC4455"> easy to configure</font>, <font color="#CC4455">reproducible</font>,
+							and <font color="#CC4455">portable</font> work environments built
 							on top of industry-standard technology and controlled by a <font
-							color="#ffff00">single consistent workflow</font> to help
+							color="#CC4455">single consistent workflow</font> to help
 							maximize the productivity and flexibility of you and your team.
 						</font>
 					</blockquote>
@@ -582,9 +596,9 @@ end
 						<li>Develop - IDE / Editor / Browser etc</li>
 						<li>Define third party dependencies / services etc</li>
 						<ul>
-							<li>mysql</li>
-							<li>apache</li>
-							<li>tomcat</li>
+							<li>mysql / pgsql</li>
+							<li>apache / nginx</li>
+							<li>tomcat / rails</li>
 						</ul>
 
 
@@ -622,16 +636,17 @@ end
 
 				</section>
 				<section>
-					<h2>InstallIng Vagrant</h2>
+					<h2>Installing Vagrant</h2>
 					<div>
 						<ul>
 							<li style="text-align: left;"><span>Install
 									VirtualBox&nbsp;</span> <a
 								href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a>&nbsp;</li>
-							<li style="text-align: left;">Setup and AWS account</li>
 							<li style="text-align: left;">Install Vagrant <a
 								href="http://downloads.vagrantup.com/">http://downloads.vagrantup.com/</a>&nbsp;
 							</li>
+														<li style="text-align: left;">Optional: Setup and AWS account</li>
+
 						</ul>
 					</div>
 				</section>
@@ -641,15 +656,14 @@ end
 					</h2>
 					<h2>
 						<span style="font-size: 75.96px;">Adding Vagrant to your
-							project</span> <br>
+							project</span>
 					</h2>
 					<div>
 						<br>
 					</div>
 					<div>
-						<pre>
-                                <code>cd ~/My_Cool_Project</code>
-                                <code>vagrant init My_Cool_Project http://shonky.info/centos64.box</code>                    </pre>
+						<pre><code>cd ~/My_Cool_Project
+vagrant init My_Cool_Project http://shonky.info/centos64.box</code></pre>
 					</div>
 					<p>
 						<br> So now you have a skeleton [ with good remarks ] of a
@@ -664,25 +678,20 @@ end
 						<br>
 					</p>
 					<p style="text-align: left;">Define a box &amp; box url</p>
-					<pre>
-                            <code>config.vm.box = "CentOS 6.4 x86_64"
-config.vm.box_url = "http://shonky.info/centos64.box"</code>
-                        </pre>
+					<pre><code>config.vm.box = "CentOS 6.4 x86_64"
+config.vm.box_url = "http://bit.ly/1aNaifu"</code></pre>
 					<div style="text-align: left;">
 						<span style="text-align: center;">Configure Networking</span>
 					</div>
-					<pre>
-                            <code>config.vm.network "private_network", ip: "192.168.56.80"</code>
-                            <code>config.vm.network "public_network # will get DHCP from your LAN</code>
-                        </pre>
+					<pre><code>config.vm.network "private_network", ip: "192.168.56.80"</code></pre>
+          <pre><code>config.vm.network "public_network # will get DHCP from your LAN</code></pre>
 					<div style="text-align: left;">
 						<span style="text-align: center;">Optional</span> <span>&nbsp;but
 							handy&nbsp;</span>
 					</div>
 					<div style="text-align: left;">
-						<pre>
-                                <code>NAME = "MyAwesomeVM"</code>
-                                <code>config.vm.hostname = "#{NAME}"</code>                    </pre>
+						<pre><code>NAME = "MyAwesomeVM"</code></pre>
+            <pre><code>config.vm.hostname = "#{NAME}"</code></pre>
 						<div style="text-align: left;">
 							See <a href="http://www.vagrantbox.es/">http://www.vagrantbox.es/</a>
 							for more Vagrant boxes
@@ -698,19 +707,15 @@ config.vm.box_url = "http://shonky.info/centos64.box"</code>
 						<br>
 					</p>
 					<p style="text-align: left;">shell example:</p>
-					<pre>
-						<code>config.vm.provision :shell, :path =&gt; File.expand_path("../bootstrap.sh", __FILE__)</code>
-					</pre>
+					<pre><code>config.vm.provision :shell, :path =&gt; File.expand_path("../bootstrap.sh", __FILE__)</code></pre>
 					<div style="text-align: left;">chef-solo example:</div>
-					<pre>
-						<code>config.vm.provision :chef_solo do |chef|
+					<pre><code>config.vm.provision :chef_solo do |chef|
    chef.cookbooks_path = ["cookbooks", "site-cookbooks"]
    chef.roles_path     = ["roles"]
    chef.log_level      = ENV['CHEF_LOG'] ? ENV['CHEF_LOG'].to_sym : :info
    chef.add_role "web"
    # chef.add_recipe "nginx" => marked out but you can also add recipes ...
-end</code>
-					</pre>
+end</code></pre>
 					<p style="text-align: left;">
 						More about provisioners <a
 							href="http://docs.vagrantup.com/v2/provisioning/index.html">
@@ -729,13 +734,12 @@ end</code>
 					</ul>
 					<p></p>
 					<p style="text-align: left;">Customize you virtualbox machine:</p>
-					<pre>
-                            <code> config.vm.provider :virtualbox do |vb|
+					<pre><code> config.vm.provider :virtualbox do |vb|
     # Don't boot with headless mode
     # vb.gui = true
     vb.customize [ "modifyvm", :id, "--memory", "512"]
     vb.name = "#{NAME}"
-  end</code>                    </pre>
+  end</code></pre>
 					<p style="text-align: left;">Add some "juice" to your machine
 						[if you need it]</p>
 
@@ -745,11 +749,24 @@ end</code>
 					</p>
 				</section>
 				<section>
+					<h2>Important note:</h2><h3>Vagrant has a <b>BEST EFFORT</b> approch</h3>
+										<pre><code></code></pre>
+					<p style="text-align: left;">First try virtual box <b>unless</b> --provider is specified<br>if --provider=aws ignore all vb customizations (or networking for that matter)</p><br>
+					<p style="text-align: left;">Look for a provisioner Chef / Shell / Salt / Other ..., more then one great ! </p>
+					<pre><code>config.vm.provision "shell",
+  inline: "[[ `which chef-solo` ]] || curl -L https://www.opscode.com/chef/install.sh | sudo bash"
+config.vm.provision :chef_solo do |chef| 
+  chef.cookbooks_path = ["cookbooks", "site-cookbooks"]
+  chef.roles_path     = ["roles"]
+  chef.log_level      = ENV['CHEF_LOG'] ? ENV['CHEF_LOG'].to_sym : :info
+  chef.add_role "web"
+end</code></pre>
+				</section>
+				<section>
 					<h3>The Vagrantfile [ provider ]</h3>
 					<p style="text-align: left;">Work in the cloud - AWS example:</p>
 
-					<pre>
-                            <code> config.vm.provider :aws do |aws, override|
+					<pre><code> config.vm.provider :aws do |aws, override|
       # Add aws tags
       aws.tags = {
            'vagrant' =&gt; 'true',
@@ -764,9 +781,7 @@ end</code>
   end</code></pre>
 					In the example above set the AWS_ACCESS_KEY &amp; AWS_SECRET_KEY
 					and execute<br>
-					<pre>
-						<code>vagrant up --provider=aws</code>
-					</pre>
+					<pre><code>vagrant up --provider=aws</code></pre>
 				</section>
 				<section>
 					<h2>Vagrant can be extended via plugins</h2>
@@ -782,19 +797,107 @@ end</code>
 					</ol>
 					<br /> <br />
 					<p>Easy as:</p>
-					<pre>
-						<code>vagrant plugin install [plugin-name] </code>
-					</pre>
+					<pre><code>vagrant plugin install [plugin-name] </code></pre>
 				</section>
 			</section>
+<section>
 			<section>
+				<h2>Exercise #3:</h2>
+				<h3>Testing our cookbook with Vagrant</h3>
+				<h4>Using:</h4>
+				<div style="text-align: left;">
+				
+				<ol>
+					<li>Chef solo&nbsp;&nbsp;&nbsp;[ version 11.8.2 ] - installed in ex01</li>
+										<li>VirtualBox&nbsp;&nbsp;[ version 4.3.6 ]&nbsp;&nbsp;- now</li>
+					<li>Vagrant&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ version 1.4.1 ]&nbsp;&nbsp;- now</li>
+					<li>Ntp cookbook from Exercise#2</li>
+				</ol>
+			</div>
+			</section>
+			<section>
+					<h2>Installing VirtualBox</h2>
+					<div>
+						<p>Use installer suitabel for your platform from: <br>
+						<a herf="https://www.virtualbox.org/wiki/Downloads">Virtualbox site</a><br>
+						Offline copy is available with workshop materials</p>
+					</div>
+			</section>
+			<section>
+					<h2>Installing Vagrant</h2>
+					<div>
+						<ul>
+							<li style="text-align: left;"><span>Install
+									VirtualBox&nbsp;</span> <a
+								href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a>&nbsp;</li>
+							<li style="text-align: left;">Install Vagrant <a
+								href="http://downloads.vagrantup.com/">http://downloads.vagrantup.com/</a>&nbsp;
+							</li>
+							<li style="text-align: left;">Optional: Setup and AWS account</li>
+						</ul>
+					</div>
+			</section>
+			<section>
+					<h2>InstallIng Vagrant</h2>
+					<div>
+						<p>No extra configuration needed (at this point ...)</p>
+					</div>
+			</section>
+			<section>
+					<h2>Create a Vagrant File</h2>
+			</section>
+			<section>
+					<h2></h2>		
+					<pre><code>cd path/to/project
+vagrant init</code></pre>
+					<div>
+						<p>Get a clean vagrant file @: Add path to repo ...</p>
+					</div>
+			</section>
+			
+			<section>
+					<h2>Configure provider</h2>
+					<ol><li>Define the box you want to work with:</li>
+							<ul>
+								<li>Name</li>
+								<li>Url</li>
+								
+							</ul>
+							<li>Customize the Vagrant box</li>
+							<ul>
+								<li>GUI yes/no (defaults to no)</li>
+								<li>RAM</li>
+								<li>CPU(s)</li>
+							</ul>
+					</ol>
+			</section>
+			<section>
+					<h2>Defining the box</h2>		
+					<pre><code>Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "CentOS 6.5 x86_64"
+  config.vm.box_url = "http://bit.ly/1aNaifu"</code></pre><br>
+					<p>In order to save time I have provided an offline copy of this box:<br>
+						Add it by excuting the command <b><i>Vagrant box add</i></b> like so:</p>
+<pre><code>vagrant box add "CentOS 6.5 x86_64" file:///path/to/vbox/image-bundle.box</code></pre>
+<p>This command will add to your home folder ~/.vagrnat/boxes/CentOS 6.5 x86_64</p>
+			</section>
+			<section>
+					<h2>Customize Virtual Machine</h2>		
+					<pre><code>config.vm.provider "virtualbox" do |vb|
+  vb.gui = true
+  vb.customize ["modifyvm", :id, "--memory", 512]
+  vb.customize ["modifyvm", :id, "--ioapic", "on", "--cpus", 1]
+end</code></pre><br>
+					<p>Note the <span>vb.gui = true</span> option here, <br>in this case I would like the Virtualbox GUI to startup ! </p>
+			</section>
+			</section>
+			<section>	
 				<section>
-					<h2>Using / Re-Using</h2>
+					<h2>Using / Re-Using<br>The wrapper cookbook</h2>
 					<div style="text-align: left;">In this example:</div>
 					<div>
 						<ol>
-							<li><span>Create a web site behind an nginx web
-									server</span> <br></li>
+							<li><span>Create a web site behind an nginx web server</span> <br></li>
 							<li><span>Listen on port 4000 ...</span></li>
 						</ol>
 						<div style="text-align: left;">
@@ -1129,8 +1232,7 @@ cookbook "cloudera",
 			<section>
 				<section>
 					<h3>The chef server "route"</h3>
-					<pre>
-						<code>.
+					<pre><code>.
 ├── README.md
 ├── centos_node
 │   ├── Vagrantfile
@@ -1141,11 +1243,10 @@ cookbook "cloudera",
 │   └── knife-config.sh
 └── ubutnu_node
     ├── Vagrantfile
-    └── bootstrap.sh</code>
-					</pre>
+    └── bootstrap.sh</code></pre>
 					<p>
 						Avialble @ <a
-							href="https://github.com/tikalk-cookbooks/chef_workshop">chef_workshop
+							href="http://bit.ly/1dfVllk">chef_workshop
 							on Github</a><br>[ see chef_server_rotute directory ]
 					</p>
 					<p>We will have a chef server + 2 nodes - 1 centos, 1 ubuntu
@@ -1158,8 +1259,7 @@ cookbook "cloudera",
 					<h2>A template repo for chef server</h2>
 					<h3>provided by opscode</h3>
 					<div>
-						<pre>
-                                <code> git clone git://github.com/opscode/chef-repo.git</code>            </pre>
+						<pre><code> git clone git://github.com/opscode/chef-repo.git</code></pre>
 
 						<p>Provides a directory layout to be used in conjunction with
 							knife to:&nbsp;</p>
@@ -1170,7 +1270,7 @@ cookbook "cloudera",
 						</p>
 						<p>see example in this workshop:</p>
 						<p>
-							<a href="https://github.com/tikalk-cookbooks/chef-intro-repo">https://github.com/tikalk-cookbooks/chef-intro-repo</a>
+							<a href="http://bit.ly/1fcUmix">https://github.com/tikalk-cookbooks/chef-intro-repo</a>
 							<br>
 						</p>
 					</div>
@@ -1178,10 +1278,8 @@ cookbook "cloudera",
 				<section>
 					<h2>Install chef server</h2>
 
-					<pre>
-						<code>cd chef_workshop/chef_server_route/chef_server
-vagrant up</code>
-					</pre>
+					<pre><code>cd chef_workshop/chef_server_route/chef_server
+vagrant up</code></pre>
 					<p>In 3-5 minuets you have a chef server installed and
 						chef_repo cloned under the root users direcotry !</p>
 					<p>The "magic" is in the ./boostrap.sh & ./knife-config.sh
@@ -1191,15 +1289,13 @@ vagrant up</code>
 				<section>
 					<h2>Configure knife</h2>
 					<div>
-						<pre>
-                                <code>knife configure --admin-client-name admin --admin-client-key \
-    /etc/chef-server/admin.pem -i -r /root/chef_repo/ \
-    --validation-client-name chef-validator --validation-key \
-    /etc/chef-server/chef-validator.pem</code>        </pre>
+						<pre><code>knife configure --admin-client-name admin --admin-client-key \
+    				/etc/chef-server/admin.pem -i -r /root/chef_repo/ \
+    	--validation-client-name chef-validator --validation-key \
+    				/etc/chef-server/chef-validator.pem</code></pre>
 						<p>This is relevant to our example, in most cases you
 							will&nbsp;</p>
-						<pre>
-                                <code> knife configure -i</code>    </pre>
+						<pre><code> knife configure -i</code></pre>
 						<p>
 							<br>
 						</p>
@@ -1208,28 +1304,22 @@ vagrant up</code>
 				<section>
 					<h2>Upload roles & cookbooks to server</h2>
 					<div>
-						<pre>
-							<code>sudo -i
+						<pre><code>sudo -i
 cd ~/chef_repo
 knife role from file roles/base.json
 knife cookbook upload ntp
 knife cookbook upload chef-client
-</code>
-						</pre>
+</code></pre>
 						<p>Provision a centos / ubutnu node via Vagrant ...</p>
-						<pre>
-							<code>cd chef_workshop/centos_node
-vagrant up</code>
-						</pre>
+						<pre><code>cd chef_workshop/centos_node
+vagrant up</code></pre>
 						<p>Connect back to chef-server and provison nodes</p>
-						<pre>
-							<code># Bootstrap nodes
+						<pre><code># Bootstrap nodes
 centos node :: 
 knife bootstrap 192.168.56.103 -x opencm -P opencm -r 'role[base]' --sudo
 ubtunu node :: 
 knife bootstrap 192.168.56.104 -x opencm -P opencm -r 'role[base]' --sudo
-</code>
-						</pre>
+</code></pre>
 					</div>
 				</section>
 				<section>
@@ -1261,16 +1351,14 @@ knife bootstrap 192.168.56.104 -x opencm -P opencm -r 'role[base]' --sudo
 			<section>
 				<section>
 					<h3>The solo "route"</h3>
-					<pre>
-						<code>.
+					<pre><code>.
 ├── README.md
 ├── centos_node
 │   ├── Vagrantfile
 │   └── bootstrap.sh
 └── ubutnu_node
     ├── Vagrantfile
-    └── bootstrap.sh</code>
-					</pre>
+    └── bootstrap.sh</code></pre>
 					<p>
 						Avialble @ <a
 							href="https://github.com/tikalk-cookbooks/chef_workshop">chef_workshop
@@ -1283,8 +1371,7 @@ knife bootstrap 192.168.56.104 -x opencm -P opencm -r 'role[base]' --sudo
 				<section>
 					<h2>A repo layout 4 chef-solo</h2>
 					<div style="text-align: left;">
-						<pre>
-                                <code>.
+						<pre><code>.
 ├── .chef/knife.rb
 ├── .git
 ├── .gitignore
@@ -1294,8 +1381,7 @@ knife bootstrap 192.168.56.104 -x opencm -P opencm -r 'role[base]' --sudo
 ├── nodes
 ├── roles
 ├── site-cookbooks
-└── solo.rb</code>
-						</pre>
+└── solo.rb</code></pre>
 						<p>Provides a place for all chef objects [ nodes, roles,
 							databags ]</p>
 						<p></p>
@@ -1320,15 +1406,14 @@ knife bootstrap 192.168.56.104 -x opencm -P opencm -r 'role[base]' --sudo
 				<section>
 					<h2>solo.rb configuration</h2>
 					<div>
-						<pre>
-                                <code>base_dir = File.expand_path('../', __FILE__)
+						<pre><code>base_dir = File.expand_path('../', __FILE__)
 cookbook_path [File.join(base_dir, 'cookbooks'), File.join(base_dir, 'site-cookbooks')]
 role_path File.join(base_dir, 'roles')
 data_bag_path File.join(base_dir, 'data_bags')
 
 file_cache_path file_cache_path File.join(base_dir, 'tmp')
 # Default json
-json_attribs File.join(base_dir, 'nodes', 'default.json')</code>    </pre>
+json_attribs File.join(base_dir, 'nodes', 'default.json')</code></pre>
 						<p style="text-align: left;">Defines:</p>
 						<p style="text-align: left;"></p>
 						<ol>
@@ -1345,41 +1430,40 @@ json_attribs File.join(base_dir, 'nodes', 'default.json')</code>    </pre>
 						</p>
 					</div>
 				</section>
-
+<section>
+	<h2>solo.rb configuration - continued</h2>
+	<p>Looks familiar ? <br>Vagrant file creates the solo.rb configuration ...</p>
+	<pre><code>config.vm.provision :chef_solo do |chef|
+ chef.cookbooks_path = ["cookbooks", "site-cookbooks"]
+ chef.roles_path     = ["roles"]
+ chef.log_level      = ENV['CHEF_LOG'] ? ENV['CHEF_LOG'].to_sym : :info
+ chef.add_role "web"
+end</code></pre>
+	</section>
 				<section>
 					<h2>running chef-solo</h2>
-					<pre>
-                                <code>chef-solo -c &lt;solo-config&gt; -j node.json</code>    </pre>
+					<pre><code> chef-solo -c &lt;solo-config&gt; -j node.json</code></pre>
 					<p>Now in our case we used:&nbsp;</p>
-					<pre>
-						<code> json_attribs File.join(base_dir, 'nodes', 'default.json')</code>
-                            </pre>
+					<pre><code> json_attribs File.join(base_dir, 'nodes', 'default.json')</code></pre>
 					<p style="text-align: left;">So:</p>
-					<pre>
-						<code>{
+					<pre><code>{
   "run_list": [
     "role[default]"
   ]
-}</code>
-					</pre>
+}</code></pre>
 					<p style="text-align: left;">Will use:</p>
-					<pre>
-						<code>name "default"
+					<pre><code>name "default"
 description "The basic stuff any server needs - rpm repos, users, etc etc ..."
 run_list "recipe[yum::yum]", "recipe[base]"
 override_attributes({
    :yum =&gt; {
         :repoforge_release =&gt; '0.5.3-1'
    }
-})</code>
-					</pre>
-
+})</code></pre>
 				</section>
 				<section>
 					<h2>Using knife in solo mode</h2>
-					<div>
-						<br>
-					</div>
+					
 					<div style="text-align: left;">
 						<ol>
 							<li><span>&nbsp;You want the "cookbook templates"</span> <br>
@@ -1392,10 +1476,9 @@ override_attributes({
 						</div>
 						<div style="text-align: center;">You need a few gems:</div>
 						<div style="text-align: center;">
-							<pre>
-                                    <code>gem "knife-solo"
+							<pre><code>gem "knife-solo"
 gem "librarian-chef"
-gem "knife-solo_data_bag"</code>                </pre>
+gem "knife-solo_data_bag"</code></pre>
 						</div>
 					</div>
 					<div style="text-align: left;">
@@ -1431,15 +1514,13 @@ gem "knife-solo_data_bag"</code>                </pre>
 					</div>
 					<div>DEMO - Let's do it !</div>
 
-					<pre>
-						<code>config.vm.provision "shell", inline: "[[ `which chef-solo` ]] || curl -L https://www.opscode.com/chef/install.sh | sudo bash"
+					<pre><code>config.vm.provision "shell", inline: "[[ `which chef-solo` ]] || curl -L https://www.opscode.com/chef/install.sh | sudo bash"
 config.vm.provision :chef_solo do |chef|
  chef.cookbooks_path = ["cookbooks", "site-cookbooks"]
  chef.roles_path     = ["roles"]
  chef.log_level      = ENV['CHEF_LOG'] ? ENV['CHEF_LOG'].to_sym : :info
  chef.add_role "web"
-end</code>
-					</pre>
+end</code></pre>
 					<p>Two provisioners in this exmaple:
 					<ol>
 						<li>shell - installes chef on the instance</li>
@@ -1484,6 +1565,9 @@ end</code>
 
 	<script src="lib/js/head.min.js"></script>
 	<script src="js/reveal.min.js"></script>
+	
+	<script src="lib/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+	<script src="lib/js/tikal.js"></script>
 
 	<script>
 		// Full list of configuration options available here:
