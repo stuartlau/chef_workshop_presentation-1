@@ -68,18 +68,7 @@
 					doing." - Aristotle, Greek philiosopher</blockquote>
 			</section>
 			
-			<section>
-			<h2>Agenda Day 2</h2>
-				<ol>
-					<li>Server vs.solo</li>
-					<li>Working with Chef server</li>
-					<li>Working with Chef solo</li>
-					<li>Hands on Chef &amp; Vagrant</li>
-				</ol>
-				<br />
-				<blockquote>"What we have to learn to do, we learn by
-					doing." - Aristotle, Greek philiosopher</blockquote>
-					</section>
+			
 					</section>
 			<section>
 				<section>
@@ -1211,9 +1200,75 @@ keys /etc/ntp/keys
 			</section>
 
 			</section>
+			<section>
+				<h2>Day 1 - What have we achived ?</h2>
+				<div style="text-align: left">
+				<ol>
+					<li>Chef introduction</li>
+					<li>Setup required tools</li>
+					<li>Cookbook lifecycle - 2 iterations</li>
+					<li>Vagrant introduction</li>
+					<li>Run our cookbook in a Vagrnat box</li>
+				</ol>
+			</div>
+			<br>
+				<div style="text-align: left"><p>Planned for next session</p>
+					<ol>
+						<li>Chef solo / Chef server ?</li>
+						<li>Manageing dependeices</li>
+						<li>Setup & Use chef server</li>
+						<li>Setup Chef Workstation</li>
+						<li>Use Chef solo</li>
+					</ol>
+				</div>
+			</section>
+			</section>
+			<section>
+				<h1>That's all for today ...</h1>
+			</section>
+
+			<section>
+				<h1>Recap</h1>
+				<ol>
+					<li>We know chef ...</li>
+					<li>We know vagrant ...</li>
+					<li>Used chef solo</li>
+					<li>Have all the tools for using Chef & Vagrant</li>
+				</ol>
+			</section>
+			<section>
+				<section>
+				<h2>Agenda Day 2</h2>
+					<ol>
+						<li>The "wrapper" cookbook - ex04</li>
+						<li>Managing Depedencies</li>
+						<li>The solo way - ex05</li>
+						<li>The Vagrant (solo) pattern</li>
+						<li>Server vs. Solo</li>
+						<li>Working with Chef solo - ex06</li>
+						<li>Working with Chef server - ex07</li>
+						<li>Summary</li>
+					</ol>
+					<br />
+					<blockquote>"What we have to learn to do, we learn by
+						doing." - Aristotle, Greek philiosopher</blockquote>
+				</section>
+			</section>
 			<section>	
 				<section>
-					<h2>Using / Re-Using<br>The wrapper cookbook</h2>
+					<h2>The wrapper cookbook</h2>
+					<img src="images/gum-wrapper.jpg"
+							style="border: 0; max-height: none; max-width: none;">
+						<br>
+				</section>
+				
+				</section>
+				<section>
+					<section>
+					<h2>Excercise 04</h2>	
+					</section>
+					<section>
+					<h2>Using / Re-Using</h2>
 					<div style="text-align: left;">In this example:</div>
 					<div>
 						<ol>
@@ -1229,88 +1284,106 @@ keys /etc/ntp/keys
 							style="width: 426.4149373743702px; border: 0; height: 83.53749445664597px; max-height: none; max-width: none;">
 						<br>
 					</div>
-					<p>We will use this emaple in the 'solo' route</p>
-
-
 				</section>
 				<section>
 					<h2>Create a new cookbook</h2>
+					</section>
+				<section>
 					<div>
-						<br>
+						<pre><code>knife cookbook create web</code></pre>
 					</div>
-					<div>
-						<pre>
-							<code>knife cookbook create web</code>
-						</pre>
-					</div>
-					<div style="text-align: left;">Setup the cookbook's
-						dependencies</div>
-					<div style="text-align: left;">
+					</section>
+				<section>
+					<h2>Setup the cookbook's
+						dependencies</h2>
+						</section>
+				<section>
 						<pre><code>vim web/metadata.rb</code></pre>
 						<pre><code>depends 'nginx'</code></pre>
-					</div>
-					<div style="text-align: left;">When using chef solo you want
-						to edit your Cheffile accordingly:</div>
-					<div style="text-align: left;">
-						<pre>
-                                <code>echo "cookbook 'nginx'" &gt;&gt; /path/to/Cheffile</code>
-						</pre>
-					</div>
+						<p>We will learn later on how this line<br> makes a difference ...</p>					
 				</section>
 				<section>
-					<h2>Create the recipe</h2>
-					<div>
-						<pre>
-                                <code>include_recipe "nginx"
+					<h2>Define the attributes</h2>
+						<ol>
+							<li>nginx listen port</li>
+							<li>where to place the index.html file [ a.k.a DocumentRoot ]</li>
+						</ol>
+				</section>
+				<section>
+					<h2>Define the attributes</h2>
+						<pre><code>default['nginx']['port'] = '4000'
+default['nginx']['listen_ports'] = %w[80, #{node['nginx']['port']}]
+default['nginx']['vhost']['basedir'] = '/var/www/nginx'
+default['nginx']['vhost']['demo'] = "#{node['nginx']['vhost']['basedir']}/demo"</code></pre>
+				</section>
+
+				<section>
+					<h2>Create the website directory</h2>
+					<p>use an attribute, for the directory name !</p>
+					</section>
+				<section>
+						<pre><code>include_recipe "nginx"
 
 #Create the runtime directory - using directory resource [ chef core resource provider ]
 directory node[:nginx][:vhost][:demo] do
   owner 'nginx'
   group 'nginx'
   recursive true
-end</code>
-						</pre>
-						<p>Crete the Vhost definition</p>
-						<pre>
-							<code>template "/etc/nginx/sites-available/demo-site" do  # the "default" sites-available dir under nginx's run folder
+end</code></pre>
+</section>
+				<section>
+						<h2>Create the nging Vhost definition</h2>
+						<p>Use a template file ... </p>
+						</section>
+				<section>
+						<pre><code>template "/etc/nginx/sites-available/demo-site" do  # the "default" sites-available dir under nginx's run folder
   source "demo-site.erb"                            # the template file to use
   owner "root"                                      # Owner of the file
   group "root"                                      # Group of the file
   mode 0644                                         # Mode
   notifies :restart, "service[nginx]"               # Restart nginx upon configuration
-end</code>
-						</pre>
-					</div>
+end</code></pre>
 				</section>
 				<section>
-					<h2>Vhost Template</h2>
+					<h2>Crate the Vhost Template</h2>
+					<p>Use a template file ... </p>
+					</section>
+				<section>
 					<div>
-						<pre>
-                                <code> # nginx virtual host template configured by chef on &lt;%= node[:fqdn] %&gt;
+						<pre><code> # nginx virtual host template configured by chef on &lt;%= node[:fqdn] %&gt;
 
 server {
   listen &lt;%= node[:nginx][:port] %&gt; default;
   server_name &lt;%= node[:fqdn] %&gt;;
   root &lt;%= node[:nginx][:vhost][:demo] %&gt;;
-}</code>
-                            </pre>
+}</code></pre>
 
 						Will evaluate to:
-						<pre>
-                                <code># nginx virtual host template configured by chef on chef-solo-demo
+						<pre><code># nginx virtual host template configured by chef on chef-solo-demo
 
 server {
   listen 4000 default;
   server_name chef-solo-demo;
   root /var/www/nginx/demo;
-}</code>    </pre>
+}</code></pre>
 					</div>
 				</section>
 				<section>
-					<h2>Create the recipe</h2>
+					<h2>Create a index.html file ...</h2>
+					<p>
+						<ol>
+							<li>Use a template file ...</li>
+							<li>Name the file index.html</li>
+							<li>Place it in the document root folder</li>
+							<li>Place an image from <a href="http://www.tikalk.com/files/devops-icons1.png">http://www.tikalk.com/files/devops-icons1.png</a> in that index.html file</li>
+						</ol>
+					</p>
+
+				</section>
+				<section>
+					<h2>Declare the template</h2>
 					<div>
-						<pre>
-                                <code># Create a website from template ...
+						<pre><code># Create a website from template ...
                                 
 template "#{node[:nginx][:vhost][:demo]}/index.html" do #index file location
   source "index.html.erb"                               # now user
@@ -1318,23 +1391,15 @@ template "#{node[:nginx][:vhost][:demo]}/index.html" do #index file location
   group  "nginx"
 end
 
-nginx_site "demo-site" do                               # "nginx_ensite" see :: https://github.com/perusio/nginx_ensite
-  enable :true
-  notifies :restart, "service[nginx]"
-end
+</code></pre>
 
-# disable iptables ! =&gt; just for this demo :)
-include_recipe "iptables::disabled"
-                                </code>
-						</pre>
 					</div>
 				</section>
 				<section>
 					<h2>Website Template</h2>
 					<div style="text-align: left;">The index.html.erb file:</div>
 					<div>
-						<pre>
-                                <code> &lt;html&gt;
+						<pre><code> &lt;html&gt;
   &lt;head&gt;&lt;/head&gt;
   &lt;body&gt;
     &lt;center&gt;
@@ -1345,49 +1410,25 @@ include_recipe "iptables::disabled"
       &lt;h1&gt;And your'e a full stack developer !!!&lt;/h1&gt;
     &lt;/center&gt;
   &lt;/body&gt;
-&lt;/html&gt;</code>        </pre>
+&lt;/html&gt;</code></pre>
 					</div>
-					<div style="text-align: left;">Will evaluate to:</div>
-					<div>
-						<pre>
-                                <code> &lt;html&gt;
-  &lt;head&gt;&lt;/head&gt;
-  &lt;body&gt;
-    &lt;center&gt;
-      &lt;h1&gt;Demo site running on nginx chef-solo-demo&lt;/h1&gt;
-      &lt;div&gt;
-        &lt;img src="http://www.tikalk.com/files/devops-icons1.png" alt="DevOpsIcon"/&gt;
-      &lt;/div&gt;
-      &lt;h1&gt;And your'e a full stack developer !!!&lt;/h1&gt;
-    &lt;/center&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</code>    </pre>
-					</div>
+					
 				</section>
 				<section>
-					<h2>Define the attributes</h2>
-					<div>
-						<pre>
-                                <code>default['nginx']['port'] = '4000'
-default['nginx']['listen_ports'] = %w[80, #{node['nginx']['port']}]
-default['nginx']['vhost']['basedir'] = '/var/www/nginx'
-default['nginx']['vhost']['demo'] = "#{node['nginx']['vhost']['basedir']}/demo"</code>    </pre>
-						<p>Define&nbsp;</p>
-						<p></p>
-						<ol>
-							<li><span style="text-align: center;">Listen
-									port,&nbsp;</span> <span style="text-align: center;">&nbsp;</span></li>
-							<li><span style="text-align: center;">where to place
-									the index.html file [ DocumentRoot]</span> <br></li>
-						</ol>
-						<p></p>
-					</div>
+					<h2>Enable this nginx vhost</h2>
+					<pre><code>nginx_site "demo-site" do # "nginx_ensite" see :: https://github.com/perusio/nginx_ensite
+  enable :true
+  notifies :restart, "service[nginx]"
+end
+
+# disable iptables ! =&gt; just for this demo :)
+include_recipe "iptables::disabled"</code></pre>
 				</section>
+				
 				<section>
 					<h2>Don't forget to name it in metadata.rb !!!</h2>
 					<div>
-						<pre>
-                                <code>name             'web'
+						<pre><code>name             'web'
 maintainer       'Tikal Knowledge LTD'
 maintainer_email 'c5191707@tikalk.com'
 license          'Apache 2.0'
@@ -1397,21 +1438,32 @@ version          '0.1.0'
 
 
 depends 'nginx'
-depends 'iptables' # opend nginx port(S)</code>
-                            </pre>
+depends 'iptables' # opend nginx port(S)</code></pre>
 						<p></p>
 						<ol>
 							<li><span style="text-align: center;">Make sure you
 									name your cookbook - if not the name will default to the
-									directory name [ no so good ]</span> <br></li>
+									directory name [ not so good ]</span> <br></li>
 							<li><span style="text-align: center;">Make sure the
 									name isn't taken or it will "clash" with community cookbooks !</span>
 							</li>
 						</ol>
-						<p></p>
-						<p>
-							<br>
-						</p>
+					</div>
+				</section>
+				<section>
+					<h2>You would expect chef to be "smarter" ...</h2>
+					<pre><code>depends 'nginx'
+depends 'iptables' # opend nginx port(S)</code></pre>
+					<p>And know how to get these cookbooks - right ?</p>
+				</section>
+				<section>
+					<h2>Add nginx dependency</h2>
+					<div style="text-align: left;">When using chef solo you want
+						to edit your Cheffile accordingly:</div>
+					<div style="text-align: left;">
+						<pre><code>echo "cookbook 'nginx'" &gt;&gt; /path/to/Cheffile</code></pre>
+						<p>Or</p>
+						<pre><code>echo "cookbook 'nginx'" &gt;&gt; /path/to/Berksfile</code></pre>
 					</div>
 				</section>
 			</section>
@@ -1855,11 +1907,11 @@ end</code></pre>
 					<ol>
 						<li>Understand chef - arcitecture and how it operates</li>
 						<li>Create a basic cookbook</li>
-						<li>Inroduce Vagrant</li>
+						<li>Introduce Vagrant</li>
 						<li>Install chef server</li>
 						<li>Bootstrap two nodes</li>
 						<li>Hands on - chef server expereice</li>
-						<li>Second cook book exmple - reusing uther cookbooks</li>
+						<li>Second cook book example - reusing uther cookbooks</li>
 						<li>Run in solo mode</li>
 						<li>Hands on cehf-solo experience</li>
 					</ol>
