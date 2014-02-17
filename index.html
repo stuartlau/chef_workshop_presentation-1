@@ -58,14 +58,14 @@
 				<ol>
 					<li>Introduction to Opscode Chef</li>
 					<li>Write an innocent cookbook - hands on</li>
-					<li>Imrove the innocent cookbook - hands on</li>
+					<li>Improve the innocent cookbook - hands on</li>
 					<li>Introduction to Vagrant</li>
 					<li>Use Vagrant & Chef - hands on</li>
 					<li>Summary day 1</li>
 				</ol>
 				<br />
 				<blockquote>"What we have to learn to do, we learn by
-					doing." - Aristotle, Greek philiosopher</blockquote>
+					doing." - Aristotle, Greek philosopher</blockquote>
 			</section>
 			
 			
@@ -85,8 +85,8 @@
 						</li>
 
 						<li>Working on Continuous Integration, Delivery in the cloud
-							with Jenkins, Opscode Chef, AWS, Open Stack, Vmware &amp; many
-							more fine tools &amp; frameworks.<br /> <br /> Iv'e designed
+							with Jenkins, Opscode Chef, AWS, Open Stack, VMware &amp; many
+							more fine tools &amp; frameworks.<br /> <br /> I've designed
 							&amp; implemented build (CI) systems for many companies, and
 							designed solutions from the development and into production.
 						</li>
@@ -144,7 +144,7 @@
 				</section>
 			<section>
 				<section>
-					<h1>Excercise - Hands On</h1>
+					<h1>Exercise - Hands On</h1>
 					<h2>Writing your first cookbook</h2>
 					<br>
 					<div>
@@ -159,13 +159,13 @@
 					
 				</section>
 				<section>
-					<h2>Prequisets</h2>
+					<h2>Prerequisites</h2>
 					<ol>
 						<li>A Laptop ... :)</li>
 						<li>Internet Access (download rpms etc)</li>
-						<li>Some scripting backgroud </br>(Shell/PS - Ruby is a plus)</li>
+						<li>Some scripting background </br>(Shell/PS - Ruby is a plus)</li>
 						<li>Git [git bash for windows*]</li>
-						<li>Github account [private/public key]</li>
+						<li>Github account [private / public key]</li>
 						<li>VirtualBox</li>
 						<li>Chef (ruby)</li>
 					</ol>
@@ -352,8 +352,7 @@ end</code></pre>
 					<div>
 						<br>
 					</div>
-					<div>This recipe only works on centos - it will fail on
-						ubuntu !</div>
+					<div>This recipe only works on centos - it will fail on ubuntu !</div>
 					<div>
 						<br>
 					</div>
@@ -387,7 +386,7 @@ end</code></pre>
 					<section>
 					<h2>Add an attributes file</h2>
 					<pre><code>vim ntp/attributes/default.rb</code></pre>
-					<p>Use a case statment to differentiate between platforms</p>
+					<p>Use a case statement to differentiate between platforms</p>
 					<pre><code>case x
 when 1,2,3
   puts "1, 2, or 3"
@@ -396,7 +395,7 @@ when 10
 else
   puts "Some other number"
 end</code></pre>
-<a href="http://ruby-doc.org/docs/keywords/1.9/Object.html#method-i-case">Rubydoc case statments</a>
+<a href="http://ruby-doc.org/docs/keywords/1.9/Object.html#method-i-case">Rubydoc case statement</a>
 				</section>
 
 				<section>
@@ -439,7 +438,7 @@ end</code></pre>
 				<section>
 					<h2>Add an array of ntp servers</h2>
 					<p>In order to support more than 1 server<br>
-						In this exmaple add:</p>
+						In this example add:</p>
 						<pre><code>0.pool.ntp.org, 1.pool.ntp.org, 2.pool.ntp.org, 3.pool.ntp.org</code></pre>
 				</section>
 				<section>
@@ -486,27 +485,16 @@ restrict -6 ::1
 				</section>
 				<section>
 					<h2>Improving your recipe [Step 3/3]</h2>
-					<div style="text-align: left;">Re-arrange recipe</div>
-					<div style="text-align: left;">
+					<p>Re-arrange recipe</p>
 						<pre><code>package "ntp" do
     action [:install]
-end
-</code></pre>
-					</div>
-					<code>
-						<code>
-							<div>
-								<p>The package name is similar on all platforms<br> so there is no real change here ...</p>
-							</div>
-							<div>
+end</code></pre>
+							<p>The package name is similar on all platforms<br> so there is no real change here ...</p>
+							<p>
 								[3of3] <a
 									href="http://bit.ly/1cuZwWo">on
 									github</a>&nbsp;tag 0.1.1
-							</div>
-
-						</code>
-					</code>
-					<br>
+							</p>
 				</section>
 				<section>
 					<h2>Improving your recipe [Step 3/3]</h2>
@@ -521,7 +509,7 @@ end
 					<code>
 						<code>
 							<div>
-								<p>Service declearation - the service name and it's implied location<br> /etc/init.d/ntp or /etc/init.d/ntpd</p><br>
+								<p>Service declaration - the service name and it's implied location<br> /etc/init.d/ntp or /etc/init.d/ntpd</p><br>
 									based on: service =&gt;node[:ntp][:service]
 							</div><br>
 							<div>
@@ -663,20 +651,10 @@ end
 
 			<section>
 				<section>
-					<h2>
-						<span style="font-size: 75.96px;"> <br>
-						</span>
-					</h2>
-					<h2>
-						<span style="font-size: 75.51398468017578px;">Introduction
-							to</span>
-					</h2>
-					<h2>
-						<img class="nobg"  src="images/vagrant_hippie.png">
-					</h2>
-					<h2>
-						<span style="font-size: 64.566px;">VAGRANT</span> <br>
-					</h2>
+					<h2>Introduction to</h2>
+					<br>
+					<img class="nobg"  src="images/vagrant_hippie.png">
+					<h2>VAGRANT</h2>
 				</section>
 				<section>
 					<h2>
@@ -728,7 +706,7 @@ end
 							color="#CC4455"> easy to configure</font>, <font color="#CC4455">reproducible</font>,
 							and <font color="#CC4455">portable</font> work environments built
 							on top of industry-standard technology and controlled by a <font
-							color="#CC4455">single consistent workflow</font> to help
+							color="#CC4455">single consistent work-flow</font> to help
 							maximize the productivity and flexibility of you and your team.
 						</font>
 					</blockquote>
@@ -754,7 +732,7 @@ end
 
 				</section>
 				<section>
-					<h2>THE Workflow &gt; Experience</h2>
+					<h2>The workflow &gt; experience</h2>
 					<p style="text-align: left;"></p>
 					<ol>
 						<li>Develop - IDE / Editor / Browser etc</li>
@@ -813,7 +791,7 @@ end
 
 						</ul>
 					</div>
-					<p>Offline copy is available with workshop materials</p>
+					<p>Off-line copy is available with workshop materials</p>
 				</section>
 				<section>
 					<h2>
@@ -823,19 +801,13 @@ end
 						<span style="font-size: 75.96px;">Adding Vagrant to your
 							project</span>
 					</h2>
-					<div>
 						<br>
-					</div>
 					<div>
 						<pre><code>cd ~/My_Cool_Project
 vagrant init My_Cool_Project http://shonky.info/centos64.box</code></pre>
 					</div>
-					<p>
-						<br> So now you have a skeleton [ with good remarks ] of a
-						Vagrantfile
-					</p>
-
-
+					<br>
+					<p>So now you have a skeleton [ with good remarks ] of a Vagrantfile</p>
 				</section>
 				<section>
 					<h3>The Vagrantfile [ compute ]</h3>
@@ -882,7 +854,7 @@ config.vm.box_url = "http://bit.ly/1aNaifu"</code></pre>
    # chef.add_recipe "nginx" => marked out but you can also add recipes ...
 end</code></pre>
 					<p style="text-align: left;">
-						More about provisioners <a
+						More about provisioner(s) <a
 							href="http://docs.vagrantup.com/v2/provisioning/index.html">
 							here</a>
 					</p>
@@ -914,7 +886,7 @@ end</code></pre>
 					</p>
 				</section>
 				<section>
-					<h2>Important note:</h2><h3>Vagrant has a <b>BEST EFFORT</b> approch</h3>
+					<h2>Important note:</h2><h3>Vagrant has a <b>BEST EFFORT</b> approach</h3>
 										<pre><code></code></pre>
 					<p style="text-align: left;">First try virtual box <b>unless</b> --provider is specified<br>if --provider=aws ignore all vb customizations (or networking for that matter)</p><br>
 					<p style="text-align: left;">Look for a provisioner Chef / Shell / Salt / Other ..., more then one great ! </p>
@@ -952,13 +924,9 @@ end</code></pre>
 					<h2>Vagrant can be extended via plugins</h2>
 					<p>For example:
 					<ol>
-						<li><a href="https://github.com/mitchellh/vagrant-aws">AWS
-								(Amazon Web Services) plugin</a></li>
-						<li><a
-							href="https://github.com/jimmycuadra/vagrant-librarian-chef">librarian-chef
-								plugin</a></li>
-						<li><a href="https://github.com/riotgames/vagrant-berkshelf">Berkshelf
-								plugin</a></li>
+						<li><a href="https://github.com/mitchellh/vagrant-aws">AWS (Amazon Web Services) plugin</a></li>
+						<li><a href="https://github.com/jimmycuadra/vagrant-librarian-chef">librarian-chef plugin</a></li>
+						<li><a href="https://github.com/riotgames/vagrant-berkshelf">Berkshelf plugin</a></li>
 					</ol>
 					<br /> <br />
 					<p>Easy as:</p>
@@ -982,24 +950,24 @@ end</code></pre>
 			</section>
 			<section>
 					<h2>Installing VirtualBox</h2>
-					<div>
-						<p>Use installer suitable for your platform from: <br>
-						<a herf="https://www.virtualbox.org/wiki/Downloads">Virtualbox site</a><br>
-						Offline copy is available with workshop materials</p>
-					</div>
+						<p>Use installer suitable for your platform from: 
+							<br>
+							<a herf="https://www.virtualbox.org/wiki/Downloads">Virtualbox site</a>
+							<br>
+							<br>
+							Offline copy is available with workshop materials
+						</p>
 			</section>
 			<section>
 					<h2>Installing Vagrant</h2>
 					<div>
 						<ul>
-							<li style="text-align: left;"><span>Install
-									VirtualBox&nbsp;</span> <a
-								href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a>&nbsp;</li>
-							<li style="text-align: left;">Install Vagrant <a
-								href="http://downloads.vagrantup.com/">http://downloads.vagrantup.com/</a>&nbsp;
-							</li>
+							<li style="text-align: left;"><span>Install VirtualBox&nbsp;</span> <a href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a>&nbsp;</li>
+							<li style="text-align: left;">Install Vagrant <a href="http://downloads.vagrantup.com/">http://downloads.vagrantup.com/</a>&nbsp;</li>
 							<li style="text-align: left;">Optional: Setup and AWS account</li>
 						</ul>
+						  <br>
+						  <br>
 						<p>Offline copy is available with workshop materials</p>
 					</div>
 			</section>
@@ -1016,9 +984,7 @@ end</code></pre>
 					<h2></h2>		
 					<pre><code>cd path/to/project
 vagrant init</code></pre>
-					<div>
 						<p>You should get a clean vagrant file</p>
-					</div>
 			</section>
 			
 			<section>
@@ -1224,7 +1190,27 @@ keys /etc/ntp/keys
 			</section>
 			</section>
 			<section>
-				<h1>That's all for today ...</h1>
+			
+				<section>
+					<h1>References-Day 1</h1>
+				</section>
+			
+				<section>
+					<h2>ntp-intro</h2>
+					<img src="images/tikalk-cookbooks_ntp-intro.png"/>
+					<a href="http://bit.ly/1egBtKm">https://github.com/tikalk-cookbooks/ntp-intro</a>
+				</section>
+			
+				<section>
+					<h2>Chef Workshop repo</h2>
+					<img src="images/tikalk-cookbooks_chef_workshop.png"/>
+					<a href="http://bit.ly/1dfVllk">https://github.com/tikalk-cookbooks/chef_workshop</a>
+				</section>
+			
+			</section>
+
+			<section>
+				<h1>Thats all for today ...</h1>
 			</section>
 
 			<section>
