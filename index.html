@@ -298,12 +298,16 @@ end</code></pre>
 					</div>
 					<div style="text-align: left;">Create the template file:</div>
 					<div style="text-align: left;">
-						<pre><code>vim cookbooks/ntp/templates/default/ntp.conf.erb
-
-template "/etc/ntp.conf" do
-source "ntp.conf.erb"
-variables( :ntp_server =&gt; "time.nist.gov" )
-notifies :restart, "service[ntpd]"</code></pre>
+						<pre><code>vim cookbooks/ntp/templates/default/ntp.conf.erb</code></pre>
+						<pre><code>restrict default kod nomodify notrap nopeer noquery
+restrict -6 default kod nomodify notrap nopeer noquery
+restrict 127.0.0.1
+restrict -6 ::1
+server <%= @ntp_server %>
+server  127.127.1.0     # local clock
+    driftfile /var/lib/ntp/drift
+    keys /etc/ntp/keys</code></pre>
+<p>https://raw.github.com/tikalk-cookbooks/ntp-intro/0.1.0/templates/default/ntp.conf.erb</p>
 					</div>
 					<p>Similar to manually editing the /etc/ntp.conf</p>
 
